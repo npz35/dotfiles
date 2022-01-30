@@ -35,3 +35,5 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+set tabstop=4
+set shiftwidth=4
