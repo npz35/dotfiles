@@ -35,6 +35,16 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+set number
+set cursorline
+set showmatch
+set laststatus=2
+set wildmode=list:longest
+syntax enable
+set list listchars=tab:\▶\-
+set hlsearch
+
+set expandtab
 set tabstop=4
 set shiftwidth=4
-set expandtab
+
