@@ -107,4 +107,18 @@ BraceWrapping:
   SplitEmptyFunction: false
   SplitEmptyRecord: false
   SplitEmptyNamespace: false
+IndentRequiresClause: false
+InsertBraces: false
+RequiresClausePosition: OwnLine
+BreakAfterAttributes: Always
+BreakArrays: false
+BreakBeforeInlineASMColon: OnlyMultiline
+InsertNewlineAtEOF: true
+IntegerLiteralSeparator:
+  Binary: 4
+  Decimal: 3
+  Hex: 4
+LineEnding: LF
+RemoveSemicolon: false
+RequiresExpressionIndentation: OuterScope
 
