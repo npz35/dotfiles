@@ -1,18 +1,20 @@
-# Ubuntu 20.04.3 LTS (clang-format version 10.0.0)
+# Ubuntu 22.04.1 LTS (clang-format version 14.0.0)
 ---
 BasedOnStyle:  Google
 Language:        Cpp
 AccessModifierOffset: -4 # -1
 AlignAfterOpenBracket: AlwaysBreak # Align
+AlignArrayOfStructures: Right # None
 AlignConsecutiveMacros: AcrossComments # false
 AlignConsecutiveAssignments: AcrossComments # false
+AlignConsecutiveBitFields: AcrossComments # None
 AlignConsecutiveDeclarations: AcrossComments # false
 AlignEscapedNewlines: Left
 AlignOperands:   Align # true
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: true
-AllowAllConstructorInitializersOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortEnumsOnASingleLine: false # true
 AllowShortBlocksOnASingleLine: Always # Never
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Inline # All
@@ -23,6 +25,8 @@ AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: false # true
 AlwaysBreakTemplateDeclarations: Yes
+AttributeMacros:
+  - __capability
 BinPackArguments: true
 BinPackParameters: true
 BraceWrapping:
@@ -38,11 +42,14 @@ BraceWrapping:
   AfterExternBlock: false
   BeforeCatch:     false
   BeforeElse:      true # false
+  BeforeLambdaBody: false
+  BeforeWhile:     false
   IndentBraces:    false
   SplitEmptyFunction: false # true
   SplitEmptyRecord: false # true
   SplitEmptyNamespace: false # true
 BreakBeforeBinaryOperators: NonAssignment # None
+BreakBeforeConceptDeclarations: true
 BreakBeforeBraces: Custom # Attach
 BreakBeforeInheritanceComma: false
 BreakInheritanceList: BeforeColon
@@ -53,61 +60,82 @@ BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
 ColumnLimit:     100 # 80
 CommentPragmas:  '^ IWYU pragma:'
+QualifierAlignment: Leave
 CompactNamespaces: false
-ConstructorInitializerAllOnOneLineOrOnePerLine: true
 ConstructorInitializerIndentWidth: 4
 ContinuationIndentWidth: 4
 Cpp11BracedListStyle: false # true
 DeriveLineEnding: true
 DerivePointerAlignment: false # true
 DisableFormat:   false
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: LogicalBlock
 ExperimentalAutoDetectBinPacking: false
+PackConstructorInitializers: Never # NextLine
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+AllowAllConstructorInitializersOnNextLine: true
 FixNamespaceComments: true
 ForEachMacros:
   - foreach
   - Q_FOREACH
   - BOOST_FOREACH
+IfMacros:
+  - KJ_IF_MAYBE
 IncludeBlocks:   Regroup
 IncludeCategories:
   - Regex:           '^<ext/.*\.h>'
     Priority:        2
     SortPriority:    0
+    CaseSensitive:   false
   - Regex:           '^<.*\.h>'
     Priority:        1
     SortPriority:    0
+    CaseSensitive:   false
   - Regex:           '^<.*'
     Priority:        2
     SortPriority:    0
+    CaseSensitive:   false
   - Regex:           '.*'
     Priority:        3
     SortPriority:    0
+    CaseSensitive:   false
 IncludeIsMainRegex: '([-_](test|unittest))?$'
 IncludeIsMainSourceRegex: ''
+IndentAccessModifiers: false
 IndentCaseLabels: true
+IndentCaseBlocks: false
 IndentGotoLabels: true
 IndentPPDirectives: None
+IndentExternBlock: Indent # AfterExternBlock
+IndentRequires:  false
 IndentWidth:     4 # 2
 IndentWrappedFunctionNames: false
+InsertTrailingCommas: None
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: false
+LambdaBodyIndentation: Signature
 MacroBlockBegin: ''
 MacroBlockEnd:   ''
 MaxEmptyLinesToKeep: 1
 NamespaceIndentation: None
 ObjCBinPackProtocolList: Never
 ObjCBlockIndentWidth: 2
+ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
 PenaltyBreakAssignment: 2
 PenaltyBreakBeforeFirstCallParameter: 1
 PenaltyBreakComment: 300
 PenaltyBreakFirstLessLess: 120
+PenaltyBreakOpenParenthesis: 0
 PenaltyBreakString: 1000
 PenaltyBreakTemplateDeclaration: 10
 PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 200
+PenaltyIndentedWhitespace: 0
 PointerAlignment: Left
+PPIndentWidth:   0 # -1
 RawStringFormats:
   - Language:        Cpp
     Delimiters:
@@ -134,36 +162,65 @@ RawStringFormats:
       - PARSE_TEXT_PROTO
       - ParseTextOrDie
       - ParseTextProtoOrDie
-    CanonicalDelimiter: ''
+      - ParseTestProto
+      - ParsePartialTestProto
+    CanonicalDelimiter: pb
     BasedOnStyle:    google
+ReferenceAlignment: Left # Pointer
 ReflowComments:  false # true
-SortIncludes:    CaseSensitive # true
+RemoveBracesLLVM: false
+SeparateDefinitionBlocks: Leave
+ShortNamespaceLines: 0 # 1
+SortIncludes:    CaseSensitive
+SortJavaStaticImport: Before
 SortUsingDeclarations: false # true
 SpaceAfterCStyleCast: false
 SpaceAfterLogicalNot: false
 SpaceAfterTemplateKeyword: false # true
 SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
 SpaceBeforeCpp11BracedList: false
 SpaceBeforeCtorInitializerColon: false # true
 SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: ControlStatements
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterForeachMacros: true
+  AfterFunctionDefinitionName: false
+  AfterFunctionDeclarationName: false
+  AfterIfMacros:   true
+  AfterOverloadedOperator: false
+  BeforeNonEmptyParentheses: false
+SpaceAroundPointerQualifiers: Default
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 1 # 2
-SpacesInAngles:  Never # false
+SpacesInAngles:  Never
 SpacesInConditionalStatement: false
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
+SpacesInLineCommentPrefix:
+  Minimum:         1
+  Maximum:         -1
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 SpaceBeforeSquareBrackets: false
+BitFieldColonSpacing: Both
 Standard:        c++20 # Auto
+StatementAttributeLikeMacros:
+  - Q_EMIT
 StatementMacros:
   - Q_UNUSED
   - QT_REQUIRE_VERSION
 TabWidth:        4 # 8
 UseCRLF:         false
 UseTab:          Never
+WhitespaceSensitiveMacros:
+  - STRINGIZE
+  - PP_STRINGIZE
+  - BOOST_PP_STRINGIZE
+  - NS_SWIFT_NAME
+  - CF_SWIFT_NAME
 ...
 
