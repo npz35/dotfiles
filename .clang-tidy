@@ -1,5 +1,6 @@
 ---
 Checks:
+  - -*,
   # - abseil-*,
   # - altera-*,
   # - android-*,
@@ -8,15 +9,19 @@ Checks:
   - cert-*,
   - concurrency-*,
   - cppcoreguidelines-*,
+  - -cppcoreguidelines-avoid-const-or-ref-data-members,
   - darwin-*,
   # - fuchsia-*,
   - google-*,
   - hicpp-*,
   # - linuxkernel-*,
-  - llvm-*,
+  # - llvm-*,
+  # - -llvm-header-guard,
   # - llvmlibc-*,
   - misc-*,
+  - -misc-non-private-member-variables-in-classes,
   - modernize-*,
+  - -modernize-return-braced-init-list,
   - -modernize-use-trailing-return-type,
   # - mpi-*,
   # - objc-*,
@@ -24,6 +29,7 @@ Checks:
   - performance-*,
   - portability-*,
   - readability-*,
+  - -readability-avoid-const-params-in-decls,
   # - zircon-*,
   - clang-analyzer-*,
   - clang-diagnostic-*,
@@ -39,7 +45,7 @@ ImplementationFileExtensions:
   - cc
   - cpp
   - cxx
-HeaderFilterRegex: ''
+HeaderFilterRegex: '^(?!\/usr)(?!\/opt)'
 FormatStyle:     file
 User:            npz35
 CheckOptions:
@@ -152,7 +158,7 @@ CheckOptions:
   cppcoreguidelines-avoid-magic-numbers.IgnoreAllFloatingPointValues: 'false'
   cppcoreguidelines-avoid-magic-numbers.IgnoreBitFieldsWidths: 'true'
   cppcoreguidelines-avoid-magic-numbers.IgnorePowersOf2IntegerValues: 'false'
-  cppcoreguidelines-avoid-magic-numbers.IgnoreTypeAliases: 'false'
+  cppcoreguidelines-avoid-magic-numbers.IgnoreTypeAliases: 'true'
   cppcoreguidelines-avoid-magic-numbers.IgnoreUserDefinedLiterals: 'false'
   cppcoreguidelines-avoid-magic-numbers.IgnoredFloatingPointValues: '1.0;100.0;'
   cppcoreguidelines-avoid-magic-numbers.IgnoredIntegerValues: '1;2;3;4;'
@@ -344,7 +350,7 @@ CheckOptions:
   modernize-use-std-print.ReplacementPrintFunction: 'std::print'
   modernize-use-std-print.ReplacementPrintlnFunction: 'std::println'
   modernize-use-std-print.StrictMode: 'false'
-  modernize-use-transparent-functors.SafeMode: 'false'
+  modernize-use-transparent-functors.SafeMode: 'true'
   modernize-use-using.IgnoreExternC: 'false'
   modernize-use-using.IgnoreMacros: 'true'
   openmp-exception-escape.IgnoredExceptions: ''
@@ -413,13 +419,13 @@ CheckOptions:
   readability-identifier-naming.EnumConstantCase: CamelCase
   readability-identifier-naming.EnumConstantHungarianPrefix: Off
   readability-identifier-naming.EnumConstantIgnoredRegexp: ''
-  readability-identifier-naming.EnumConstantPrefix: ''
+  readability-identifier-naming.EnumConstantPrefix: 'k_'
   readability-identifier-naming.EnumConstantSuffix: ''
   readability-identifier-naming.EnumHungarianPrefix: Off
   readability-identifier-naming.EnumIgnoredRegexp: ''
   readability-identifier-naming.EnumPrefix: ''
   readability-identifier-naming.EnumSuffix: ''
-  readability-identifier-naming.FunctionCase: CamelCase
+  readability-identifier-naming.FunctionCase: lower_case
   readability-identifier-naming.FunctionIgnoredRegexp: ''
   readability-identifier-naming.FunctionPrefix: ''
   readability-identifier-naming.FunctionSuffix: ''
@@ -427,7 +433,7 @@ CheckOptions:
   readability-identifier-naming.GlobalConstantCase: UPPER_CASE
   readability-identifier-naming.GlobalConstantHungarianPrefix: Off
   readability-identifier-naming.GlobalConstantIgnoredRegexp: ''
-  readability-identifier-naming.GlobalConstantPrefix: ''
+  readability-identifier-naming.GlobalConstantPrefix: 'k_'
   readability-identifier-naming.GlobalConstantSuffix: ''
   readability-identifier-naming.IgnoreFailedSplit: 'false'
   readability-identifier-naming.IgnoreMainLikeFunctions: 'false'
@@ -459,18 +465,18 @@ CheckOptions:
   readability-identifier-naming.StaticConstantCase: UPPER_CASE
   readability-identifier-naming.StaticConstantHungarianPrefix: Off
   readability-identifier-naming.StaticConstantIgnoredRegexp: ''
-  readability-identifier-naming.StaticConstantPrefix: ''
+  readability-identifier-naming.StaticConstantPrefix: 'k_'
   readability-identifier-naming.StaticConstantSuffix: ''
   readability-identifier-naming.StaticVariableCase: lower_case
   readability-identifier-naming.StaticVariableHungarianPrefix: Off
   readability-identifier-naming.StaticVariableIgnoredRegexp: ''
-  readability-identifier-naming.StaticVariablePrefix: ''
+  readability-identifier-naming.StaticVariablePrefix: 's_'
   readability-identifier-naming.StaticVariableSuffix: ''
-  readability-identifier-naming.TypeAliasCase: CamelCase
+  readability-identifier-naming.TypeAliasCase: aNy_CasE
   readability-identifier-naming.TypeAliasIgnoredRegexp: ''
   readability-identifier-naming.TypeAliasPrefix: ''
   readability-identifier-naming.TypeAliasSuffix: ''
-  readability-identifier-naming.TypedefCase: CamelCase
+  readability-identifier-naming.TypedefCase: aNy_CasE
   readability-identifier-naming.TypedefIgnoredRegexp: ''
   readability-identifier-naming.TypedefPrefix: ''
   readability-identifier-naming.TypedefSuffix: ''
@@ -486,7 +492,7 @@ CheckOptions:
   readability-magic-numbers.IgnoreAllFloatingPointValues: 'false'
   readability-magic-numbers.IgnoreBitFieldsWidths: 'true'
   readability-magic-numbers.IgnorePowersOf2IntegerValues: 'false'
-  readability-magic-numbers.IgnoreTypeAliases: 'false'
+  readability-magic-numbers.IgnoreTypeAliases: 'true'
   readability-magic-numbers.IgnoreUserDefinedLiterals: 'false'
   readability-magic-numbers.IgnoredFloatingPointValues: '1.0;100.0;'
   readability-magic-numbers.IgnoredIntegerValues: '1;2;3;4;'
