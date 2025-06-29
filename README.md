@@ -1,5 +1,11 @@
 # dotfiles
 
+## tmux
+
+```shell
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm -b v3.0.0
+```
+
 ## clang-tidy
 
 When included in the CMakeLists.txt
